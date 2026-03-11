@@ -1,0 +1,25 @@
+<!--index.wxml-->
+<view class="page">
+  <image class="bg-image" src="/assets/images/home-bg.png" mode="aspectFill"></image>
+  <!-- <view class="bg-mask"></view> -->
+
+  <view class="content">
+    <view class="logo-wrap">
+      <image class="logo" src="/assets/images/logo.png" mode="widthFix"></image>
+    </view>
+
+    <view class="intro-wrap">
+      <text class="intro-text">
+        我们专注于高品质家纺产品，
+      </text>
+      <text class="intro-text">
+        为用户提供舒适、实用、美观的床品选择。
+      </text>
+    </view>
+
+    <view class="enter-btn" bindtap="goToProduct">
+      <text class="btn-text">前往产品详情</text>
+      <text class="btn-arrow">→</text>
+    </view>
+  </view>
+</view>
