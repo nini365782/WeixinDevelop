@@ -1,0 +1,23 @@
+<view class="page">
+  <view wx:if="{{!isEmpty}}" class="grid">
+    <block wx:for="{{products}}" wx:key="id">
+      <view class="card" data-id="{{item.id}}" bindtap="handleOpenDetail">
+        <view class="image-wrap">
+          <image class="card-image" src="{{item.cover}}" mode="aspectFill"></image>
+          <view class="favorite-btn" data-id="{{item.id}}" catchtap="handleToggleFavorite">
+            <view class="mdi-light--heart favorite-glyph-favorites"></view>
+          </view>
+        </view>
+        <text class="card-name">{{item.name}}</text>
+      </view>
+    </block>
+  </view>
+
+  <view wx:else class="empty-state">
+    <view class="empty-heart">
+      <view class="mdi-light--heart empty-heart__icon"></view>
+    </view>
+    <text class="empty-title">暂无收藏商品</text>
+    <text class="empty-desc">逛逛产品页，把喜欢的家居好物先收藏起来。</text>
+  </view>
+</view>

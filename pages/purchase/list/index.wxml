@@ -1,0 +1,67 @@
+<view class="content">
+  <!-- 左侧分类 -->
+  <view class="category-panel">
+    <block wx:for="{{categories}}" wx:key="id">
+      <view
+        class="category-item {{activeCategoryId === item.id ? 'active' : ''}}"
+        bindtap="handleCategoryChange"
+        data-id="{{item.id}}"
+      >
+        {{item.name}}
+      </view>
+    </block>
+  </view>
+
+  <!-- 右侧产品列表 -->
+  <scroll-view
+    class="product-panel"
+    scroll-y="true"
+    enhanced="true"
+    show-scrollbar="false"
+    scroll-with-animation="true"
+    scroll-into-view="{{scrollIntoViewId}}"
+    bindscroll="handleProductScroll"
+  >
+    <!-- 产品列表（按分类分组连续滚动） -->
+    <view class="product-list">
+      <block wx:for="{{groupedProducts}}" wx:key="id">
+        <view
+          class="category-section"
+          id="cat-{{item.id}}"
+          data-id="{{item.id}}"
+        >
+          <view class="category-section-title">
+            {{item.name}}
+          </view>
+
+          <block wx:for="{{item.products}}" wx:key="id">
+            <view
+              class="product-card"
+              bindtap="handleTapProduct"
+              data-id="{{item.id}}"
+            >
+              <image
+                class="product-image"
+                src="{{item.cover}}"
+                mode="aspectFill"
+              ></image>
+
+              <view class="product-info">
+                <view class="product-name-row">
+                  <text class="product-name">{{item.name}}</text>
+                </view>
+
+                <view class="tag-row">
+                  <block wx:for="{{item.tags}}" wx:key="index">
+                    <text class="tag">{{item}}</text>
+                  </block>
+                </view>
+              </view>
+            </view>
+          </block>
+        </view>
+      </block>
+    </view>
+  </scroll-view>
+</view>
+

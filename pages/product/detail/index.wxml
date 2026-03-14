@@ -1,0 +1,78 @@
+<view wx:if="{{product}}" class="page">
+  <view class="media">
+    <swiper class="hero-swiper" circular="true" indicator-dots="true" autoplay="false">
+      <block wx:for="{{product.images}}" wx:key="index">
+        <swiper-item>
+          <image
+            class="hero-image"
+            src="{{item}}"
+            mode="aspectFill"
+            data-current="{{item}}"
+            bindtap="handlePreviewImage"
+          ></image>
+        </swiper-item>
+      </block>
+    </swiper>
+
+    <view class="media-actions">
+      <view class="floating-btn" bindtap="handleBack">
+        <image class="floating-btn__icon" src="/assets/icons/arrow-left.svg" mode="aspectFit"></image>
+      </view>
+    </view>
+  </view>
+
+  <view class="sheet">
+    <view class="info-head">
+      <view class="info-copy">
+        <text class="product-name">{{product.name}}</text>
+        <view class="tag-row">
+          <block wx:for="{{product.tags}}" wx:key="index">
+            <text class="tag">{{item}}</text>
+          </block>
+        </view>
+      </view>
+
+      <view class="info-actions">
+        <view class="icon-btn {{isFavorite ? 'icon-btn--active' : ''}}" bindtap="handleToggleFavorite">
+          <view class="mdi-light--heart favorite-glyph-detail"></view>
+        </view>
+        <view class="icon-btn" bindtap="handleShareTap">
+          <image class="icon-btn__icon" src="/assets/icons/share.svg" mode="aspectFit"></image>
+        </view>
+      </view>
+    </view>
+
+    <view class="module">
+      <text class="module-title">产品色系</text>
+      <view class="chip-row">
+        <block wx:for="{{product.colors}}" wx:key="index">
+          <view class="chip">{{item}}</view>
+        </block>
+      </view>
+    </view>
+
+    <view class="module">
+      <text class="module-title">规格参数</text>
+      <block wx:for="{{product.specGroups}}" wx:key="title">
+        <view class="spec-card">
+          <view class="spec-head">
+            <text class="spec-title">{{item.title}}</text>
+          </view>
+          <block wx:for="{{item.lines}}" wx:key="index">
+            <text class="spec-line">{{item}}</text>
+          </block>
+        </view>
+      </block>
+    </view>
+
+    <view class="module">
+      <text class="module-title">详情介绍</text>
+      <text class="desc">{{product.desc}}</text>
+      <text class="story">{{product.story}}</text>
+    </view>
+  </view>
+</view>
+
+<view wx:else class="fallback">
+  <text class="fallback-text">未找到该商品</text>
+</view>

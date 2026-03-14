@@ -1,66 +1,134 @@
-// pages/product.js
+const { categories, products } = require('../../data/products')
+const { getFavorites, toggleFavorite } = require('../../utils/favorite')
+
+function buildCategoryTabs() {
+  return [{ id: 0, name: '全部系列' }].concat(categories)
+}
+
+function decorateProducts(productList, favoriteIds) {
+  return productList.map(item => ({
+    ...item,
+    isFavorite: favoriteIds.includes(item.id)
+  }))
+}
+
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    categories: buildCategoryTabs(),
+    products: [],
+    searchValue: '',
+    searchKeyword: '',
+    activeCategoryId: 0,
+    resultCount: 0,
+    isEmpty: false
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad(options) {
-
+  onLoad() {
+    this.syncProducts()
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
   onShow() {
-
+    this.syncProducts()
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
+  syncProducts() {
+    const favoriteIds = getFavorites()
+    const decoratedProducts = decorateProducts(products, favoriteIds)
+    const filteredProducts = this.filterProducts(
+      decoratedProducts,
+      this.data.activeCategoryId,
+      this.data.searchKeyword
+    )
 
+    this.setData({
+      products: filteredProducts,
+      resultCount: filteredProducts.length,
+      isEmpty: filteredProducts.length === 0
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
+  filterProducts(productList, activeCategoryId, searchKeyword) {
+    const keyword = (searchKeyword || '').trim().toLowerCase()
 
+    return productList.filter(item => {
+      const matchCategory = activeCategoryId === 0 || item.categoryId === activeCategoryId
+      const content = [item.name, item.categoryName].join(' ').toLowerCase()
+      const matchKeyword = !keyword || content.includes(keyword)
+      return matchCategory && matchKeyword
+    })
   },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
+  handleSearchInput(e) {
+    const value = e.detail.value
 
+    this.setData({
+      searchValue: value
+    })
+
+    this.applyFilters({
+      searchKeyword: value
+    })
   },
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
+  handleConfirmSearch() {
+    this.applyFilters({
+      searchKeyword: this.data.searchValue
+    })
   },
 
-  /**
-   * 用户点击右上角分享
-   */
+  handleTapSearch() {
+    this.handleConfirmSearch()
+  },
+
+  handleCategoryTap(e) {
+    const { id } = e.currentTarget.dataset
+    this.applyFilters({
+      activeCategoryId: id
+    })
+  },
+
+  applyFilters(nextState) {
+    const activeCategoryId = nextState.activeCategoryId !== undefined
+      ? nextState.activeCategoryId
+      : this.data.activeCategoryId
+    const searchKeyword = nextState.searchKeyword !== undefined
+      ? nextState.searchKeyword
+      : this.data.searchKeyword
+    const favoriteIds = getFavorites()
+    const decoratedProducts = decorateProducts(products, favoriteIds)
+    const filteredProducts = this.filterProducts(decoratedProducts, activeCategoryId, searchKeyword)
+
+    this.setData({
+      ...nextState,
+      products: filteredProducts,
+      resultCount: filteredProducts.length,
+      isEmpty: filteredProducts.length === 0
+    })
+  },
+
+  handleOpenFavorites() {
+    wx.navigateTo({
+      url: '/pages/product/favorites/index'
+    })
+  },
+
+  handleOpenDetail(e) {
+    const { id } = e.currentTarget.dataset
+    wx.navigateTo({
+      url: `/pages/product/detail/index?id=${id}`
+    })
+  },
+
+  handleToggleFavorite(e) {
+    const { id } = e.currentTarget.dataset
+    toggleFavorite(id)
+    this.syncProducts()
+  },
+
   onShareAppMessage() {
-
+    return {
+      title: '丝兰臻家产品页',
+      path: '/pages/product/product'
+    }
   }
 })

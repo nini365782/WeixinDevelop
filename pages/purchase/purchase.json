@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "product-list": "./list/index",
+    "product-detail": "./detail/index"
+  }
+}

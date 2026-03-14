@@ -1,0 +1,14 @@
+<!--pages/product/product.wxml-->
+<view class="page">
+  <product-list
+    categories="{{categories}}"
+    products="{{products}}"
+    bind:openDetail="handleOpenDetail"
+  />
+
+  <product-detail
+    show="{{showDetail}}"
+    detailData="{{detailData}}"
+    bind:close="handleCloseDetail"
+  />
+</view>

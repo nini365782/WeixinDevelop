@@ -1,0 +1,21 @@
+<view class="page">
+  <view class="hero-card">
+    <text class="hero-title">我的</text>
+    <text class="hero-subtitle">个人信息与功能入口将在这里逐步完善。</text>
+  </view>
+
+  <view class="section">
+    <view class="menu-item">
+      <text class="menu-label">个人资料</text>
+      <text class="menu-arrow">></text>
+    </view>
+    <view class="menu-item">
+      <text class="menu-label">收货地址</text>
+      <text class="menu-arrow">></text>
+    </view>
+    <view class="menu-item">
+      <text class="menu-label">联系客服</text>
+      <text class="menu-arrow">></text>
+    </view>
+  </view>
+</view>

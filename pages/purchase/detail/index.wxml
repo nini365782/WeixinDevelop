@@ -1,0 +1,83 @@
+<view
+  class="detail-mask"
+  wx:if="{{show}}"
+  bindtap="handleClose"
+>
+  <view class="detail-popup" catchtap="noop">
+    <!-- 浮动关闭按钮 -->
+    <view class="close-btn floating" bindtap="handleClose">×</view>
+
+    <!-- 图片轮播 -->
+    <swiper
+      class="detail-swiper"
+      circular="true"
+      indicator-dots="true"
+      autoplay="false"
+      bindchange="handleSwiperChange"
+    >
+      <block wx:for="{{detailData.images}}" wx:key="index">
+        <swiper-item>
+          <image
+            class="detail-image"
+            src="{{item}}"
+            mode="aspectFill"
+            bindtap="handlePreviewImage"
+            data-current="{{item}}"
+          ></image>
+        </swiper-item>
+      </block>
+    </swiper>
+
+    <!-- 详情内容 -->
+    <scroll-view
+      class="detail-content"
+      scroll-y="true"
+      show-scrollbar="false"
+    >
+      <view class="detail-body">
+        <view class="detail-name">{{detailData.name}}</view>
+
+        <view class="tag-row detail-tags">
+          <block wx:for="{{detailData.tags}}" wx:key="index">
+            <text class="tag">{{item}}</text>
+          </block>
+        </view>
+
+        <view class="detail-desc">
+          {{detailData.desc}}
+        </view>
+
+        <view class="detail-block">
+          <view class="detail-block-title">可选规格</view>
+          <view class="option-row">
+            <block wx:for="{{detailData.sizes}}" wx:key="index">
+              <view
+                class="option-chip {{selectedSize === item ? 'selected' : ''}}"
+                bindtap="handleSelectSize"
+                data-value="{{item}}"
+              >
+                {{item}}
+              </view>
+            </block>
+          </view>
+        </view>
+
+        <view class="detail-block">
+          <view class="detail-block-title">可选样式</view>
+          <view class="option-row">
+            <block wx:for="{{detailData.colors}}" wx:key="index">
+              <view
+                class="option-chip {{selectedColor === item ? 'selected' : ''}}"
+                bindtap="handleSelectColor"
+                data-value="{{item}}"
+              >
+                {{item}}
+              </view>
+            </block>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+</view>
+

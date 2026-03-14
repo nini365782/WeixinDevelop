@@ -1,0 +1,103 @@
+.page {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top right, #f7eadf 0%, rgba(247, 234, 223, 0) 32%),
+    #f6f2ec;
+  padding: 24rpx 24rpx 40rpx;
+  color: #2f261f;
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.card {
+  width: 342rpx;
+  margin-bottom: 24rpx;
+}
+
+.image-wrap {
+  position: relative;
+  border-radius: 26rpx;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.84);
+  box-shadow: 0 16rpx 36rpx rgba(84, 65, 50, 0.08);
+}
+
+.card-image {
+  width: 100%;
+  height: 360rpx;
+  display: block;
+}
+
+.favorite-btn {
+  position: absolute;
+  top: 18rpx;
+  right: 18rpx;
+  width: 54rpx;
+  height: 54rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(145, 55, 49, 0.94);
+  color: #fff4f2;
+}
+
+.favorite-glyph-favorites {
+  width: 30rpx;
+  height: 30rpx;
+  color: #fff4f2;
+}
+
+.card-name {
+  margin-top: 16rpx;
+  display: block;
+  font-size: 28rpx;
+  line-height: 1.5;
+  color: #2d241d;
+}
+
+.empty-state {
+  min-height: 76vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.empty-heart {
+  width: 168rpx;
+  height: 168rpx;
+  border-radius: 42rpx;
+  background: rgba(255, 255, 255, 0.84);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 88rpx;
+  color: #bea790;
+  box-shadow: 0 20rpx 44rpx rgba(86, 66, 53, 0.08);
+}
+
+.empty-heart__icon {
+  width: 88rpx;
+  height: 88rpx;
+  color: #bea790;
+}
+
+.empty-title {
+  margin-top: 30rpx;
+  font-size: 32rpx;
+  color: #3d322a;
+}
+
+.empty-desc {
+  margin-top: 12rpx;
+  width: 420rpx;
+  font-size: 24rpx;
+  line-height: 1.7;
+  color: #85796d;
+}
