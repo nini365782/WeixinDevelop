@@ -8,6 +8,7 @@ const categories = [
 const products = [
   {
     id: 101,
+    showOnHome: true,
     categoryId: 1,
     categoryName: '晨曦系列',
     name: '意式轻奢床品四件套',
@@ -34,6 +35,7 @@ const products = [
   },
   {
     id: 102,
+    showOnHome: true,
     categoryId: 1,
     categoryName: '晨曦系列',
     name: '简约纯色床笠套装',
@@ -59,6 +61,7 @@ const products = [
   },
   {
     id: 201,
+    showOnHome: false,
     categoryId: 2,
     categoryName: '舒适哲学',
     name: '法式奶油风靠枕',
@@ -84,6 +87,7 @@ const products = [
   },
   {
     id: 301,
+    showOnHome: false,
     categoryId: 3,
     categoryName: '格调生活',
     name: '现代风软装单品',
@@ -108,6 +112,7 @@ const products = [
   },
   {
     id: 302,
+    showOnHome: false,
     categoryId: 3,
     categoryName: '格调生活',
     name: '格纹质感床品组合',
@@ -133,6 +138,7 @@ const products = [
   },
   {
     id: 303,
+    showOnHome: true,
     categoryId: 3,
     categoryName: '格调生活',
     name: '高级灰莫兰迪抱枕套装',
@@ -157,6 +163,7 @@ const products = [
   },
   {
     id: 401,
+    showOnHome: true,
     categoryId: 4,
     categoryName: '天丝磨毛',
     name: '天丝磨毛四件套',
