@@ -7,10 +7,12 @@ Component({
     detailData: {
       type: Object,
       value: {
+        id: 0,
         images: [],
         tags: [],
         sizes: [],
-        colors: []
+        colors: [],
+        price: 0
       }
     }
   },
@@ -18,6 +20,7 @@ Component({
   data: {
     selectedSize: '',
     selectedColor: '',
+    quantity: 1,
     currentSwiper: 0
   },
 
@@ -30,6 +33,7 @@ Component({
       this.setData({
         selectedSize: sizes.length ? sizes[0] : '',
         selectedColor: colors.length ? colors[0] : '',
+        quantity: 1,
         currentSwiper: 0
       })
     }
@@ -49,7 +53,6 @@ Component({
     handlePreviewImage(e) {
       const { current } = e.currentTarget.dataset
       const images = this.data.detailData.images || []
-
       wx.previewImage({
         current,
         urls: images
@@ -57,20 +60,49 @@ Component({
     },
 
     handleSelectSize(e) {
-      const { value } = e.currentTarget.dataset
       this.setData({
-        selectedSize: value
+        selectedSize: e.currentTarget.dataset.value
       })
     },
 
     handleSelectColor(e) {
-      const { value } = e.currentTarget.dataset
       this.setData({
-        selectedColor: value
+        selectedColor: e.currentTarget.dataset.value
+      })
+    },
+
+    handleDecreaseQuantity() {
+      this.setData({
+        quantity: Math.max(1, this.data.quantity - 1)
+      })
+    },
+
+    handleIncreaseQuantity() {
+      this.setData({
+        quantity: this.data.quantity + 1
+      })
+    },
+
+    handleAddToCart() {
+      const { detailData, quantity, selectedSize, selectedColor } = this.data
+      this.triggerEvent('addToCart', {
+        id: detailData.id,
+        quantity,
+        selectedSize,
+        selectedColor
+      })
+    },
+
+    handleBuyNow() {
+      const { detailData, quantity, selectedSize, selectedColor } = this.data
+      this.triggerEvent('buyNow', {
+        id: detailData.id,
+        quantity,
+        selectedSize,
+        selectedColor
       })
     },
 
     noop() {}
   }
 })
-

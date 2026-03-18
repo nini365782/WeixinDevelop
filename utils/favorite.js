@@ -13,6 +13,11 @@ function saveFavorites(ids) {
   wx.setStorageSync(FAVORITE_STORAGE_KEY, ids)
 }
 
+function clearFavorites() {
+  saveFavorites([])
+  return []
+}
+
 function isFavorite(productId) {
   return getFavorites().includes(productId)
 }
@@ -35,6 +40,7 @@ function toggleFavorite(productId) {
 module.exports = {
   FAVORITE_STORAGE_KEY,
   getFavorites,
+  clearFavorites,
   isFavorite,
   toggleFavorite
 }

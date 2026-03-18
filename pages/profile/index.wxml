@@ -1,21 +1,34 @@
 <view class="page">
-  <view class="hero-card">
-    <text class="hero-title">我的</text>
-    <text class="hero-subtitle">个人信息与功能入口将在这里逐步完善。</text>
-  </view>
+  <scroll-view class="page-body" scroll-y="true" enhanced="true" show-scrollbar="false">
+    <view class="hero-card">
+      <text class="hero-title">我的</text>
+      <text class="hero-subtitle">查看订单、收藏与购物车，管理你的家居购物进度。</text>
+    </view>
 
-  <view class="section">
-    <view class="menu-item">
-      <text class="menu-label">个人资料</text>
-      <text class="menu-arrow">></text>
+    <view class="section">
+      <view class="menu-item" bindtap="handleOpenOrders">
+        <view>
+          <text class="menu-label">我的订单</text>
+          <text class="menu-desc">查看待付款、待发货和历史订单</text>
+        </view>
+        <text class="menu-arrow">></text>
+      </view>
+
+      <view class="menu-item" bindtap="handleOpenFavorites">
+        <view>
+          <text class="menu-label">我的收藏</text>
+          <text class="menu-desc">回看喜欢的家居好物</text>
+        </view>
+        <text class="menu-arrow">></text>
+      </view>
+
+      <view class="menu-item" bindtap="handleOpenCart">
+        <view>
+          <text class="menu-label">购物车</text>
+          <text class="menu-desc">继续编辑待结算商品</text>
+        </view>
+        <text class="menu-arrow">></text>
+      </view>
     </view>
-    <view class="menu-item">
-      <text class="menu-label">收货地址</text>
-      <text class="menu-arrow">></text>
-    </view>
-    <view class="menu-item">
-      <text class="menu-label">联系客服</text>
-      <text class="menu-arrow">></text>
-    </view>
-  </view>
+  </scroll-view>
 </view>

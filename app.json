@@ -5,7 +5,9 @@
     "pages/product/favorites/index",
     "pages/product/detail/index",
     "pages/purchase/purchase",
-    "pages/profile/index"
+    "pages/purchase/cart/index",
+    "pages/profile/index",
+    "pages/profile/orders/index"
   ],
   "window": {
     "navigationBarTextStyle": "black",
@@ -13,6 +15,7 @@
     "navigationBarBackgroundColor": "#ffffff"
   },
   "tabBar": {
+    "custom": true,
     "list": [
       {
         "pagePath": "pages/index/index",

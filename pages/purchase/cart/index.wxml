@@ -1,0 +1,43 @@
+<view class="page">
+  <view wx:if="{{!isEmpty}}" class="cart-list">
+    <block wx:for="{{items}}" wx:key="index">
+      <view class="cart-card">
+        <image class="cart-image" src="{{item.cover}}" mode="aspectFill"></image>
+
+        <view class="cart-info">
+          <text class="cart-name">{{item.name}}</text>
+          <text wx:if="{{item.selectedSize}}" class="cart-meta">规格：{{item.selectedSize}}</text>
+          <text wx:if="{{item.selectedColor}}" class="cart-meta">颜色：{{item.selectedColor}}</text>
+
+          <view class="cart-bottom">
+            <text class="cart-price">¥{{item.price}}</text>
+            <view class="quantity-stepper">
+              <view class="stepper-btn" data-index="{{index}}" data-quantity="{{item.quantity}}" bindtap="handleDecrease">-</view>
+              <text class="stepper-value">{{item.quantity}}</text>
+              <view class="stepper-btn stepper-btn--plus" data-index="{{index}}" data-quantity="{{item.quantity}}" bindtap="handleIncrease">+</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+
+  <view wx:else class="empty-state">
+    <view class="empty-cart">
+      <view class="mdi-light--cart empty-cart__icon"></view>
+    </view>
+    <text class="empty-title">购物车还是空的</text>
+    <text class="empty-desc">去商城挑选喜欢的商品吧。</text>
+  </view>
+
+  <view class="checkout-bar">
+    <view class="summary">
+      <text class="summary-count">共 {{totalCount}} 件</text>
+      <text class="summary-price">¥{{totalPrice}}</text>
+    </view>
+    <view class="checkout-actions">
+      <view class="clear-btn" bindtap="handleClearCart">清空</view>
+      <view class="checkout-btn" bindtap="handleCheckout">去结算</view>
+    </view>
+  </view>
+</view>

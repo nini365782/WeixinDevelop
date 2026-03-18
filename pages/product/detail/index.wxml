@@ -25,50 +25,70 @@
     <view class="info-head">
       <view class="info-copy">
         <text class="product-name">{{product.name}}</text>
-        <view class="tag-row">
+        <view class="series-row">
+          <text class="product-series">{{product.categoryName}}</text>
           <block wx:for="{{product.tags}}" wx:key="index">
-            <text class="tag">{{item}}</text>
+            <text class="series-tag">{{item}}</text>
           </block>
         </view>
       </view>
 
       <view class="info-actions">
         <view class="icon-btn {{isFavorite ? 'icon-btn--active' : ''}}" bindtap="handleToggleFavorite">
-          <view class="mdi-light--heart favorite-glyph-detail"></view>
+          <view class="{{isFavorite ? 'mdi-light--heart-solid favorite-glyph-detail favorite-glyph-detail--active' : 'mdi-light--heart favorite-glyph-detail'}}"></view>
         </view>
         <view class="icon-btn" bindtap="handleShareTap">
-          <image class="icon-btn__icon" src="/assets/icons/share.svg" mode="aspectFit"></image>
+          <view class="material-symbols-light--share-outline icon-btn__icon share-glyph"></view>
         </view>
       </view>
     </view>
 
     <view class="module">
-      <text class="module-title">产品色系</text>
-      <view class="chip-row">
-        <block wx:for="{{product.colors}}" wx:key="index">
-          <view class="chip">{{item}}</view>
+      <view class="module-heading">
+        <text class="module-title">选色展示</text>
+        <text class="module-title-en">SELECTED PALETTE</text>
+      </view>
+      <view class="palette-row">
+        <block wx:for="{{product.colorPalette}}" wx:key="name">
+          <view class="palette-item">
+            <view class="palette-swatch">
+              <view class="palette-swatch__inner" style="{{item.swatchStyle}}"></view>
+            </view>
+            <text class="palette-name">{{item.name}}</text>
+          </view>
         </block>
       </view>
     </view>
 
     <view class="module">
-      <text class="module-title">规格参数</text>
-      <block wx:for="{{product.specGroups}}" wx:key="title">
-        <view class="spec-card">
-          <view class="spec-head">
-            <text class="spec-title">{{item.title}}</text>
-          </view>
-          <block wx:for="{{item.lines}}" wx:key="index">
-            <text class="spec-line">{{item}}</text>
+      <view class="module-heading">
+        <text class="module-title">规格参数</text>
+        <text class="module-title-en">SPECIFICATIONS</text>
+      </view>
+      <view class="spec-table">
+        <view class="spec-table__header">
+          <text class="spec-table__label"></text>
+          <block wx:for="{{product.specColumns}}" wx:key="index">
+            <text class="spec-table__col-title">{{item}}</text>
           </block>
         </view>
-      </block>
+        <block wx:for="{{product.specRows}}" wx:key="label">
+          <view class="spec-table__row">
+            <text class="spec-table__label">{{item.label}}</text>
+            <block wx:for="{{item.values}}" wx:key="index">
+              <text class="spec-table__value">{{item}}</text>
+            </block>
+          </view>
+        </block>
+      </view>
     </view>
 
     <view class="module">
-      <text class="module-title">详情介绍</text>
-      <text class="desc">{{product.desc}}</text>
-      <text class="story">{{product.story}}</text>
+      <view class="module-heading">
+        <text class="module-title">详情介绍</text>
+        <text class="module-title-en">DESCRIPTION</text>
+      </view>
+      <text class="desc desc--full">{{product.desc}} {{product.story}}</text>
     </view>
   </view>
 </view>

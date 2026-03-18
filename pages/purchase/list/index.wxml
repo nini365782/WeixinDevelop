@@ -1,5 +1,4 @@
 <view class="content">
-  <!-- 左侧分类 -->
   <view class="category-panel">
     <block wx:for="{{categories}}" wx:key="id">
       <view
@@ -12,7 +11,6 @@
     </block>
   </view>
 
-  <!-- 右侧产品列表 -->
   <scroll-view
     class="product-panel"
     scroll-y="true"
@@ -22,39 +20,55 @@
     scroll-into-view="{{scrollIntoViewId}}"
     bindscroll="handleProductScroll"
   >
-    <!-- 产品列表（按分类分组连续滚动） -->
     <view class="product-list">
       <block wx:for="{{groupedProducts}}" wx:key="id">
-        <view
-          class="category-section"
-          id="cat-{{item.id}}"
-          data-id="{{item.id}}"
-        >
-          <view class="category-section-title">
-            {{item.name}}
-          </view>
+        <view class="category-section" id="cat-{{item.id}}" data-id="{{item.id}}">
+          <view class="category-section-title">{{item.name}}</view>
 
           <block wx:for="{{item.products}}" wx:key="id">
-            <view
-              class="product-card"
-              bindtap="handleTapProduct"
-              data-id="{{item.id}}"
-            >
-              <image
-                class="product-image"
-                src="{{item.cover}}"
-                mode="aspectFill"
-              ></image>
+            <view class="product-card" bindtap="handleTapProduct" data-id="{{item.id}}">
+              <image class="product-image" src="{{item.cover}}" mode="aspectFill"></image>
 
               <view class="product-info">
-                <view class="product-name-row">
+                <view class="product-title-row">
                   <text class="product-name">{{item.name}}</text>
+                  <text class="product-price">¥{{item.price}}</text>
                 </view>
 
-                <view class="tag-row">
-                  <block wx:for="{{item.tags}}" wx:key="index">
-                    <text class="tag">{{item}}</text>
-                  </block>
+                <view class="meta-row">
+                  <view class="tag-row">
+                    <block wx:for="{{item.tags}}" wx:key="index">
+                      <text class="tag">{{item}}</text>
+                    </block>
+                  </view>
+
+                  <view
+                    wx:if="{{(item.cartQuantity || 0) > 0}}"
+                    class="quantity-stepper"
+                    catchtap="noop"
+                  >
+                    <view
+                      class="stepper-btn"
+                      data-id="{{item.id}}"
+                      data-quantity="{{item.cartQuantity || 0}}"
+                      catchtap="handleDecreaseQuantity"
+                    >-</view>
+                    <text class="stepper-value">{{item.cartQuantity || 0}}</text>
+                    <view
+                      class="stepper-btn stepper-btn--plus"
+                      data-id="{{item.id}}"
+                      data-quantity="{{item.cartQuantity || 0}}"
+                      catchtap="handleIncreaseQuantity"
+                    >+</view>
+                  </view>
+
+                  <view
+                    wx:else
+                    class="stepper-btn stepper-btn--plus stepper-btn--single"
+                    data-id="{{item.id}}"
+                    data-quantity="{{item.cartQuantity || 0}}"
+                    catchtap="handleIncreaseQuantity"
+                  >+</view>
                 </view>
               </view>
             </view>
@@ -64,4 +78,3 @@
     </view>
   </scroll-view>
 </view>
-

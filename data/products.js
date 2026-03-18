@@ -182,10 +182,29 @@ const products = [
   }
 ]
 
+const priceMap = {
+  101: 699,
+  102: 499,
+  201: 259,
+  301: 329,
+  302: 459,
+  303: 389,
+  401: 799
+}
+
+function buildColorOptions(colors = []) {
+  return colors.map(name => ({
+    name,
+    color: ''
+  }))
+}
+
 function normalizeProduct(product) {
   return {
     ...product,
-    sizes: product.specGroups.map(item => item.title)
+    colorOptions: buildColorOptions(product.colors),
+    sizes: product.specGroups.map(item => item.title),
+    price: priceMap[product.id] || 299
   }
 }
 

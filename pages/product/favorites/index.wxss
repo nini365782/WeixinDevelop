@@ -13,22 +13,45 @@
   justify-content: space-between;
 }
 
-.card {
+.toolbar {
+  width: 100%;
+  margin-bottom: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.toolbar-count {
+  font-size: 24rpx;
+  color: #7b6d61;
+}
+
+.toolbar-clear {
+  padding: 10rpx 18rpx;
+  border-radius: 999rpx;
+  background: rgba(255, 255, 255, 0.78);
+  font-size: 24rpx;
+  color: #8f5a50;
+}
+
+.product-card {
   width: 342rpx;
-  margin-bottom: 24rpx;
+  margin-bottom: 34rpx;
+  background: #ffffff;
+  border-radius: 30rpx;
+  overflow: hidden;
+  box-shadow: 0 8rpx 20rpx rgba(31, 36, 48, 0.06);
 }
 
 .image-wrap {
   position: relative;
-  border-radius: 26rpx;
-  overflow: hidden;
-  background: rgba(255, 255, 255, 0.84);
-  box-shadow: 0 16rpx 36rpx rgba(84, 65, 50, 0.08);
+  background: #efefef;
+  line-height: 0;
 }
 
-.card-image {
+.product-image {
   width: 100%;
-  height: 360rpx;
+  height: 320rpx;
   display: block;
 }
 
@@ -36,28 +59,38 @@
   position: absolute;
   top: 18rpx;
   right: 18rpx;
-  width: 54rpx;
-  height: 54rpx;
+  width: 56rpx;
+  height: 56rpx;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(145, 55, 49, 0.94);
-  color: #fff4f2;
+  background: rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(10rpx);
+  -webkit-backdrop-filter: blur(10rpx);
 }
 
 .favorite-glyph-favorites {
-  width: 30rpx;
-  height: 30rpx;
-  color: #fff4f2;
+  width: 28rpx;
+  height: 28rpx;
 }
 
-.card-name {
-  margin-top: 16rpx;
-  display: block;
-  font-size: 28rpx;
-  line-height: 1.5;
-  color: #2d241d;
+.favorite-glyph-favorites--active {
+  color: #c53b2a;
+}
+
+.product-meta {
+  padding: 18rpx 20rpx 22rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  background: #ffffff;
+}
+
+.product-name {
+  font-size: 26rpx;
+  line-height: 1.35;
+  color: #111111;
 }
 
 .empty-state {

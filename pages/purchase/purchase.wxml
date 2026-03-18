@@ -1,14 +1,39 @@
-<!--pages/product/product.wxml-->
 <view class="page">
-  <product-list
-    categories="{{categories}}"
-    products="{{products}}"
-    bind:openDetail="handleOpenDetail"
-  />
+  <view class="shop-header">
+    <view class="shop-header-top">
+      <view class="hero-action cart-action" bindtap="handleOpenCart">
+        <view class="mdi-light--cart cart-glyph"></view>
+        <view wx:if="{{cartCount > 0}}" class="cart-badge">{{cartCount}}</view>
+      </view>
+
+      <view class="search-wrap">
+        <view class="search-icon material-symbols-light--search-rounded"></view>
+        <input
+          class="search-input"
+          placeholder="搜索想购买的商品"
+          placeholder-class="search-placeholder"
+          confirm-type="search"
+          value="{{searchValue}}"
+          bindinput="handleSearchInput"
+        />
+      </view>
+    </view>
+  </view>
+
+  <view class="page-body">
+    <product-list
+      categories="{{categories}}"
+      products="{{products}}"
+      bind:openDetail="handleOpenDetail"
+      bind:changeQuantity="handleChangeQuantity"
+    />
+  </view>
 
   <product-detail
     show="{{showDetail}}"
     detailData="{{detailData}}"
     bind:close="handleCloseDetail"
+    bind:addToCart="handleAddToCart"
+    bind:buyNow="handleBuyNow"
   />
 </view>

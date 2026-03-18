@@ -1,7 +1,5 @@
-<!--index.wxml-->
 <view class="page">
   <image class="bg-image" src="/assets/images/home-bg.png" mode="aspectFill"></image>
-  <!-- <view class="bg-mask"></view> -->
 
   <view class="content">
     <view class="logo-wrap">
@@ -9,17 +7,20 @@
     </view>
 
     <view class="intro-wrap">
-      <text class="intro-text">
-        我们专注于高品质家纺产品，
-      </text>
-      <text class="intro-text">
-        为用户提供舒适、实用、美观的床品选择。
-      </text>
+      <text class="intro-text">我们专注于高品质家纺与家居软装。</text>
+      <text class="intro-text">在产品页发现灵感，在商城页完成挑选与下单。</text>
     </view>
 
-    <view class="enter-btn" bindtap="goToProduct">
-      <text class="btn-text">前往产品详情</text>
-      <text class="btn-arrow">→</text>
+    <view class="action-group">
+      <view class="enter-btn" bindtap="goToProduct">
+        <text class="btn-text">进入产品页</text>
+        <text class="btn-arrow">→</text>
+      </view>
+
+      <view class="enter-btn enter-btn--ghost" bindtap="goToPurchase">
+        <text class="btn-text btn-text--dark">进入商城页</text>
+        <text class="btn-arrow btn-arrow--dark">→</text>
+      </view>
     </view>
   </view>
 </view>

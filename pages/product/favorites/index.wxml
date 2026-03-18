@@ -1,14 +1,20 @@
 <view class="page">
   <view wx:if="{{!isEmpty}}" class="grid">
+    <view class="toolbar">
+      <text class="toolbar-count">已收藏 {{favoriteCount}} 件</text>
+      <view class="toolbar-clear" bindtap="handleClearFavorites">清空</view>
+    </view>
     <block wx:for="{{products}}" wx:key="id">
-      <view class="card" data-id="{{item.id}}" bindtap="handleOpenDetail">
+      <view class="product-card" data-id="{{item.id}}" bindtap="handleOpenDetail">
         <view class="image-wrap">
-          <image class="card-image" src="{{item.cover}}" mode="aspectFill"></image>
+          <image class="product-image" src="{{item.cover}}" mode="aspectFill"></image>
           <view class="favorite-btn" data-id="{{item.id}}" catchtap="handleToggleFavorite">
-            <view class="mdi-light--heart favorite-glyph-favorites"></view>
+            <view class="mdi-light--heart-solid favorite-glyph-favorites favorite-glyph-favorites--active"></view>
           </view>
         </view>
-        <text class="card-name">{{item.name}}</text>
+        <view class="product-meta">
+          <text class="product-name">{{item.name}}</text>
+        </view>
       </view>
     </block>
   </view>

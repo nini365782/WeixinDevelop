@@ -58,14 +58,12 @@ Component({
 
     measureSectionTops() {
       const query = this.createSelectorQuery().in(this)
-
       query.select('.product-panel').boundingClientRect()
       query.selectAll('.category-section').boundingClientRect()
 
       query.exec(res => {
         const scrollRect = res[0]
         const sections = res[1] || []
-
         if (!scrollRect || !sections.length) return
 
         const sectionTops = sections.map(sec => ({
@@ -122,7 +120,24 @@ Component({
     handleTapProduct(e) {
       const { id } = e.currentTarget.dataset
       this.triggerEvent('openDetail', { id })
-    }
+    },
+
+    handleDecreaseQuantity(e) {
+      const { id, quantity } = e.currentTarget.dataset
+      this.triggerEvent('changeQuantity', {
+        id,
+        quantity: Math.max(0, quantity - 1)
+      })
+    },
+
+    handleIncreaseQuantity(e) {
+      const { id, quantity } = e.currentTarget.dataset
+      this.triggerEvent('changeQuantity', {
+        id,
+        quantity: quantity + 1
+      })
+    },
+
+    noop() {}
   }
 })
-

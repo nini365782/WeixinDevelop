@@ -10,7 +10,7 @@
 
 .hero-swiper {
   width: 100%;
-  height: 1020rpx;
+  height: 950rpx;
 }
 
 .hero-image {
@@ -35,9 +35,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 45rpx;
-  color: #46392f;
-  padding-bottom: 6rpx;
   box-shadow: 0 10rpx 30rpx rgba(62, 49, 38, 0.12);
   backdrop-filter: blur(18rpx);
   -webkit-backdrop-filter: blur(18rpx);
@@ -49,7 +46,6 @@
 }
 
 .sheet {
-  margin-top: 0rpx;
   border-radius: 32rpx 32rpx 0 0;
   background: #ffffff;
   padding: 20rpx 24rpx 48rpx;
@@ -72,19 +68,30 @@
   line-height: 1.35;
 }
 
-.tag-row {
+.series-row {
+  margin-top: 14rpx;
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: 12rpx;
-  margin-top: 18rpx;
 }
 
-.tag {
-  padding: 8rpx 18rpx;
+.product-series {
+  padding: 6rpx 14rpx;
   border-radius: 999rpx;
-  background: #f1ece5;
-  color: #6c5d4e;
+  background: #f3f1e6;
   font-size: 22rpx;
+  line-height: 1.2;
+  color: #574f3d;
+}
+
+.series-tag {
+  padding: 6rpx 14rpx;
+  border-radius: 999rpx;
+  background: #f3f1e6;
+  font-size: 22rpx;
+  line-height: 1.2;
+  color: #574f3d;
 }
 
 .info-actions {
@@ -100,14 +107,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 30rpx;
-  color: #4f4337;
   box-shadow: 0 12rpx 28rpx rgba(89, 67, 51, 0.08);
 }
 
 .icon-btn__icon {
   width: 34rpx;
   height: 34rpx;
+}
+
+.share-glyph {
+  color: #4f4337;
 }
 
 .favorite-glyph-detail {
@@ -117,80 +126,139 @@
 }
 
 .icon-btn--active {
-  background: rgba(146, 63, 54, 0.94);
-  color: #fff4f1;
+  background: rgba(255, 255, 255, 0.96);
 }
 
-.icon-btn--active .favorite-glyph-detail {
-  color: #fff4f1;
+.favorite-glyph-detail--active {
+  color: #c53b2a;
 }
 
 .module {
-  margin-top: 34rpx;
+  margin-top: 60rpx;
+  padding-top: 38rpx;
+  border-top: 2rpx solid #f1f1f1;
+}
+
+.module-heading {
+  display: flex;
+  align-items: center;
+  gap: 18rpx;
+  margin-bottom: 34rpx;
 }
 
 .module-title {
-  display: block;
-  margin-bottom: 18rpx;
   font-size: 28rpx;
-  font-weight: 600;
-  color: #3f342c;
+  font-weight: 700;
+  color: #000000;
 }
 
-.chip-row {
+.module-title-en {
+  font-size: 24rpx;
+  letter-spacing: 2rpx;
+  color: #cfd5df;
+}
+
+.palette-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 14rpx;
+  gap: 36rpx;
 }
 
-.chip {
-  min-width: 112rpx;
-  padding: 14rpx 20rpx;
-  text-align: center;
-  border-radius: 999rpx;
-  background: #f5f2ee;
-  color: #6f6458;
-  font-size: 24rpx;
-}
-
-.spec-card {
-  margin-bottom: 18rpx;
-  padding: 22rpx 24rpx;
-  border-radius: 24rpx;
-  background: #fbfaf8;
-  border: 2rpx solid #f0e7dc;
-}
-
-.spec-head {
+.palette-item {
+  width: 96rpx;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
-  margin-bottom: 10rpx;
 }
 
-.spec-title {
-  font-size: 28rpx;
-  font-weight: 600;
+.palette-swatch {
+  width: 56rpx;
+  height: 56rpx;
+  padding: 4rpx;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 0 0 2rpx rgba(232, 234, 239, 0.9);
+  box-sizing: border-box;
 }
 
-.spec-line {
-  display: block;
-  margin-top: 8rpx;
+.palette-swatch__inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.palette-name {
+  margin-top: 18rpx;
   font-size: 22rpx;
-  line-height: 1.7;
-  color: #6f6257;
+  color: #8e94a1;
+  line-height: 1.3;
+}
+
+.spec-table {
+  width: 100%;
+}
+
+.spec-table__header,
+.spec-table__row {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr 1.2fr;
+  column-gap: 30rpx;
+  align-items: center;
+}
+
+.spec-table__header {
+  position: relative;
+  padding: 0 0 28rpx;
+}
+
+.spec-table__header::after {
+  content: '';
+  position: absolute;
+  left: 24rpx;
+  right: 24rpx;
+  bottom: 0;
+  height: 1rpx;
+  background: #efefef;
+}
+
+.spec-table__row {
+  padding: 22rpx 0;
+}
+
+.spec-table__label {
+  font-size: 24rpx;
+  color: #b3aeb9;
+  padding-left: 30rpx;
+  box-sizing: border-box;
+}
+
+.spec-table__col-title {
+  text-align: center;
+  font-size: 24rpx;
+  font-weight: 400;
+  color: #000000;
+}
+
+.spec-table__value {
+  text-align: center;
+  font-size: 26rpx;
+  color: #6c7382;
 }
 
 .desc,
 .story {
   display: block;
-  font-size: 24rpx;
-  line-height: 1.9;
-  color: #61554a;
+  font-size: 26rpx;
+  line-height: 2.1;
+  color: #7d8596;
+}
+
+.desc--full {
+  margin-top: 6rpx;
 }
 
 .story {
-  margin-top: 18rpx;
+  margin-top: 22rpx;
 }
 
 .fallback {

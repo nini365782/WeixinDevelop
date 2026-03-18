@@ -1,5 +1,5 @@
 const { products } = require('../../../data/products')
-const { getFavorites, toggleFavorite } = require('../../../utils/favorite')
+const { getFavorites, clearFavorites, toggleFavorite } = require('../../../utils/favorite')
 
 function buildFavoriteProducts() {
   const favoriteIds = getFavorites()
@@ -15,6 +15,7 @@ function buildFavoriteProducts() {
 Page({
   data: {
     products: [],
+    favoriteCount: 0,
     isEmpty: true
   },
 
@@ -27,6 +28,7 @@ Page({
 
     this.setData({
       products: favoriteProducts,
+      favoriteCount: favoriteProducts.length,
       isEmpty: favoriteProducts.length === 0
     })
   },
@@ -55,6 +57,23 @@ Page({
     const { id } = e.currentTarget.dataset
     toggleFavorite(id)
     this.syncFavorites()
+  },
+
+  handleClearFavorites() {
+    if (this.data.isEmpty) return
+
+    wx.showModal({
+      title: '清空心愿单',
+      content: '确认清空全部收藏商品吗？',
+      confirmText: '清空',
+      confirmColor: '#c53b2a',
+      success: res => {
+        if (!res.confirm) return
+
+        clearFavorites()
+        this.syncFavorites()
+      }
+    })
   },
 
   handleShareTap() {

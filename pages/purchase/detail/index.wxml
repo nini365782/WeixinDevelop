@@ -1,13 +1,7 @@
-<view
-  class="detail-mask"
-  wx:if="{{show}}"
-  bindtap="handleClose"
->
+<view class="detail-mask" wx:if="{{show}}" bindtap="handleClose">
   <view class="detail-popup" catchtap="noop">
-    <!-- 浮动关闭按钮 -->
-    <view class="close-btn floating" bindtap="handleClose">×</view>
+    <view class="close-btn floating" bindtap="handleClose">&#215;</view>
 
-    <!-- 图片轮播 -->
     <swiper
       class="detail-swiper"
       circular="true"
@@ -28,27 +22,24 @@
       </block>
     </swiper>
 
-    <!-- 详情内容 -->
-    <scroll-view
-      class="detail-content"
-      scroll-y="true"
-      show-scrollbar="false"
-    >
+    <scroll-view class="detail-content" scroll-y="true" show-scrollbar="false">
       <view class="detail-body">
-        <view class="detail-name">{{detailData.name}}</view>
-
-        <view class="tag-row detail-tags">
-          <block wx:for="{{detailData.tags}}" wx:key="index">
-            <text class="tag">{{item}}</text>
-          </block>
+        <view class="detail-top">
+          <view>
+            <view class="detail-name">{{detailData.name}}</view>
+            <view class="tag-row detail-tags">
+              <block wx:for="{{detailData.tags}}" wx:key="index">
+                <text class="tag">{{item}}</text>
+              </block>
+            </view>
+          </view>
+          <text class="detail-price">&#165;{{detailData.price}}</text>
         </view>
 
-        <view class="detail-desc">
-          {{detailData.desc}}
-        </view>
+        <view class="detail-desc">{{detailData.desc}}</view>
 
         <view class="detail-block">
-          <view class="detail-block-title">可选规格</view>
+          <view class="detail-block-title">选择规格</view>
           <view class="option-row">
             <block wx:for="{{detailData.sizes}}" wx:key="index">
               <view
@@ -63,7 +54,7 @@
         </view>
 
         <view class="detail-block">
-          <view class="detail-block-title">可选样式</view>
+          <view class="detail-block-title">选择颜色</view>
           <view class="option-row">
             <block wx:for="{{detailData.colors}}" wx:key="index">
               <view
@@ -76,8 +67,25 @@
             </block>
           </view>
         </view>
+
+        <view class="detail-block detail-block--qty">
+          <view class="detail-block-title">购买数量</view>
+          <view class="quantity-stepper">
+            <view class="stepper-btn" bindtap="handleDecreaseQuantity">-</view>
+            <text class="stepper-value">{{quantity}}</text>
+            <view class="stepper-btn stepper-btn--plus" bindtap="handleIncreaseQuantity">+</view>
+          </view>
+        </view>
       </view>
     </scroll-view>
+
+    <view class="action-bar">
+      <view class="action-summary">
+        <text class="action-price">&#165;{{detailData.price}}</text>
+        <text class="action-note">已选 {{quantity}} 件</text>
+      </view>
+      <view class="action-btn action-btn--ghost" bindtap="handleAddToCart">加入购物车</view>
+      <view class="action-btn action-btn--solid" bindtap="handleBuyNow">立即购买</view>
+    </view>
   </view>
 </view>
-

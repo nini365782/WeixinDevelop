@@ -1,4 +1,7 @@
 {
+  "navigationBarTitleText": "丝兰蒂商城",
+  "navigationBarBackgroundColor": "#ffffff",
+  "navigationBarTextStyle": "black",
   "usingComponents": {
     "product-list": "./list/index",
     "product-detail": "./detail/index"
